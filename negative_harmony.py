@@ -26,7 +26,7 @@ def negative_harmony(root, notes_in):
 
 def validate_input(pattern):
     while True:
-        root_key = re.findall(pattern, input("Root key: "))[0]
+        root_key = re.findall(pattern, input("Root key: ").upper())[0]
         if root_key in ["Cb", "B#", "Db", "Eb", "E#" "Fb", "Gb", "Ab", "Bb"]:
             print("ValueError: Only sharps (i.e. nice sharps...) for now.")
             continue
@@ -34,7 +34,7 @@ def validate_input(pattern):
             break
 
     while True:
-        notes_in = re.findall(pattern, input("Chord/notes: "))
+        notes_in = re.findall(pattern, input("Chord/notes: ").upper())
         if any(
             x in ["Cb", "B#", "Db", "Eb", "E#" "Fb", "Gb", "Ab", "Bb"] for x in notes_in
         ):
