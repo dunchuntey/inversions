@@ -20,7 +20,15 @@ major_keys = [
 
 pattern = r"[A-G](?:[#b])?"
 
-scales_modes = ["major", "dorian", "phrygian", "lydian", "mixolydian", "minor", "locrian"]
+scales_modes = [
+    "major",
+    "dorian",
+    "phrygian",
+    "lydian",
+    "mixolydian",
+    "minor",
+    "locrian",
+]
 
 
 def get_scale():
@@ -36,21 +44,16 @@ def get_scale():
         scale = "major"
 
     inversion_axis = re.findall(pattern, input("Axis: "))[0]
-    rotate_to_scale = tonality[scale_mode_idx:] + tonality[:scale_mode_idx]
-    axis_idx = rotate_to_scale.index(inversion_axis)
-    print(f"Chosen tonality: {tonality}")
-
-
     tonality = [notes for notes in major_keys if root == notes[scale_mode_idx]]
     tonality = tonality[0]
-
+    rotate_to_scale = tonality[scale_mode_idx:] + tonality[:scale_mode_idx]
+    axis_idx = rotate_to_scale.index(inversion_axis)
+    print(f"Chosen tonality: {", ".join(map(str, rotate_to_scale))}")
 
     notes_in = re.findall(pattern, input("Chord/notes: "))
 
-
-# Rotate to start from the axis note
     rotated_to_axis = rotate_to_scale[axis_idx:] + rotate_to_scale[:axis_idx]
-    
+
     return rotated_to_axis, notes_in
 
 
@@ -61,15 +64,9 @@ def tonal_inversion(rotated_to_axis, notes_in):
     # Invert the notes
     for note in notes_in:
         note_idx = rotated_to_axis.index(note)
-        inversion.append(rotated_to_axis[- note_idx])
-    
+        inversion.append(rotated_to_axis[-note_idx])
+
     return inversion
 
 
-
-print(f"{", ".join(map(str, tonal_inversion(get_scale())))}")
-
-# print(f"{", ".join(map(str, sorted(tonal_inversion(key, scale, inversion_axis, notes_in))))}")
-
-# sort notes (in relation to axis)
-# print(f"{", ".join(map(str, sorted(mirror_inversion(inversion_axis, notes_in))))}")
+print(f"{", ".join(map(str, tonal_inversion(*get_scale())))}")
