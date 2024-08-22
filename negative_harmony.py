@@ -10,18 +10,13 @@ def negative_harmony(root, notes_in):
 
     if root in ["B#, E#"]:
         raise ValueError("Let's use nice sharps for now.")
-    # find the root key in the list of notes
+
     root_idx = notes.index(root)
 
-    # create new list of chromatic scale starting at the root
     rotated_notes = notes[root_idx:] + notes[:root_idx]
 
-    # create an empty list for the converted chord
     neg_chord = []
 
-    # loop through chord
-    # find index of the converted note on the chromatic scale
-    # and append to the new list
     for note in notes_in:
         note_idx = rotated_notes.index(note)
         neg_chord.append(rotated_notes[7 - note_idx])
