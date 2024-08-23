@@ -22,7 +22,7 @@ def mirror_inversion(axis, notes_in):
 
 def validate_input(pattern):
     while True:
-        inversion_axis = re.findall(pattern, input("Axis: "))[0]
+        inversion_axis = re.findall(pattern, input("Axis: ").title())[0]
         if inversion_axis in ["Cb", "B#", "Db", "Eb", "E#" "Fb", "Gb", "Ab", "Bb"]:
             print("ValueError: Only sharps (i.e. nice sharps...) for now.")
             continue
@@ -30,7 +30,7 @@ def validate_input(pattern):
             break
 
     while True:
-        notes_in = re.findall(pattern, input("Chord/notes: "))
+        notes_in = re.findall(pattern, input("Chord/notes: ").title())
         if any(
             x in ["Cb", "B#", "Db", "Eb", "E#" "Fb", "Gb", "Ab", "Bb"] for x in notes_in
         ):
