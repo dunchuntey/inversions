@@ -43,12 +43,14 @@ def get_scale():
     if scale == "ionian":
         scale = "major"
 
-    inversion_axis = re.findall(pattern, input("Axis: "))[0]
     tonality = [notes for notes in major_keys if root == notes[scale_mode_idx]]
     tonality = tonality[0]
     rotate_to_scale = tonality[scale_mode_idx:] + tonality[:scale_mode_idx]
-    axis_idx = rotate_to_scale.index(inversion_axis)
+    
     print(f"Chosen tonality: {", ".join(map(str, rotate_to_scale))}")
+    
+    inversion_axis = re.findall(pattern, input("Axis: "))[0]
+    axis_idx = rotate_to_scale.index(inversion_axis)
 
     notes_in = re.findall(pattern, input("Chord/notes: "))
 
