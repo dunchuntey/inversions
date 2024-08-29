@@ -39,7 +39,7 @@ scales = {
     # Changed 9 to 8 (G# instead of Ab, shrug emoji)
     "algerian": [0, 2, 3, 6, 7, 8, 11, 12, 14, 15, 17],
     # Testing custom pitch sets.
-    "custom": [0, 1, 5, 6, 8, 9, 12, 14]
+    "custom": [0, 2, 4, 5, 7, 9, 10, 11]
 }
 
 def get_scale():
